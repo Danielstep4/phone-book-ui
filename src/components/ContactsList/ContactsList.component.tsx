@@ -40,7 +40,7 @@ const ContactsList: React.FC<ContactsListProps> = ({ data }) => {
   };
   return (
     <>
-      <section className="box-shadow-2xl sm:w-1/2 w-screen sm:p-0 px-2">
+      <section className="box-shadow-2xl sm:w-1/2 w-screen sm:p-0 px-2 border">
         <button
           className="bg-black text-white text-lg rounded p-2 text-center w-full"
           onClick={toggleAddContactModal}
@@ -70,11 +70,13 @@ const ContactsList: React.FC<ContactsListProps> = ({ data }) => {
             </svg>
           </button>
         </form>
-        {displayData.length
-          ? displayData.map((contact) => (
-              <Contact contact={contact} key={contact._id} />
-            ))
-          : "Not Found"}
+        <div className="overflow-auto max-h-96">
+          {displayData.length
+            ? displayData.map((contact) => (
+                <Contact contact={contact} key={contact._id} />
+              ))
+            : "Not Found"}
+        </div>
       </section>
       {addContact && (
         <AddContact
