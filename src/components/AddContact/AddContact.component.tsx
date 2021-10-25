@@ -2,7 +2,7 @@ import axios from "axios";
 import { FormEvent, useEffect, useState } from "react";
 import { verifyPhone } from "../../utils/verifyPhone";
 
-const AddContact: React.FC<AddContactProps> = ({ toggler }) => {
+const AddContact: React.FC<AddContactProps> = ({ toggler, updateData }) => {
   // States
   const [fullname, setFullname] = useState("");
   const [phone, setPhone] = useState("");
@@ -58,7 +58,11 @@ const AddContact: React.FC<AddContactProps> = ({ toggler }) => {
             description,
           }
         );
-        if (response.status === 201) setIsSaved(true);
+        if (response.status === 201) {
+          const newContact = response.data as Contact;
+          updateData(newContact);
+          setIsSaved(true);
+        }
         clearInputs();
       } catch (error) {
         setError({
@@ -180,6 +184,7 @@ export default AddContact;
 
 interface AddContactProps {
   toggler: () => void;
+  updateData: (contact: Contact) => void;
 }
 
 interface AddContactInputProps {

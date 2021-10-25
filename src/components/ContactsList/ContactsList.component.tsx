@@ -26,9 +26,27 @@ const ContactsList: React.FC<ContactsListProps> = ({ data }) => {
   };
   // Add contact modal toggler
   const toggleAddContactModal = () => setAddContact(!addContact);
+  // Add new contact to existing data
+  const addNewContact = (contact: Contact) => {
+    setDisplayData((prev) => {
+      prev.push(contact);
+      prev.sort((a, b) => {
+        if (a.fullname < b.fullname) return -1;
+        if (a.fullname > b.fullname) return 1;
+        return 0;
+      });
+      return prev;
+    });
+  };
   return (
     <>
       <section className="box-shadow-2xl sm:w-1/2 w-screen sm:p-0 px-2">
+        <button
+          className="bg-black text-white text-lg rounded p-2 text-center w-full"
+          onClick={toggleAddContactModal}
+        >
+          Add Contact
+        </button>
         <form className="flex border" onSubmit={handleSubmit}>
           <input
             name="fullname"
@@ -57,14 +75,13 @@ const ContactsList: React.FC<ContactsListProps> = ({ data }) => {
               <Contact contact={contact} key={contact._id} />
             ))
           : "Not Found"}
-        <button
-          className="bg-black text-white text-lg rounded p-2 text-center w-full"
-          onClick={toggleAddContactModal}
-        >
-          Add Contact
-        </button>
       </section>
-      {addContact && <AddContact toggler={toggleAddContactModal} />}
+      {addContact && (
+        <AddContact
+          toggler={toggleAddContactModal}
+          updateData={addNewContact}
+        />
+      )}
     </>
   );
 };

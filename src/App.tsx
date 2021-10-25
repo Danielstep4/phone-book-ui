@@ -3,9 +3,11 @@ import axios from "axios";
 import ContactsList from "./components/ContactsList";
 
 const App: React.FC = () => {
+  //State
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  // On load get data from api
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/api/contacts`)
@@ -21,6 +23,7 @@ const App: React.FC = () => {
 
   if (isLoading) return <>Loading...</>;
   if (isError) return <>Error...</>;
+
   return (
     <main className="flex flex-col justify-flex-start items-center h-screen w-screen relative">
       <h1 className="font-bold text-3xl my-10">Phone Book Manager</h1>
