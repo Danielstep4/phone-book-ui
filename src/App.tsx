@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ContactsList from "./components/ContactsList";
-import AddContact from "./components/AddContact";
 
 const App: React.FC = () => {
   const [contacts, setContacts] = useState<Contact[]>([]);
@@ -23,7 +22,7 @@ const App: React.FC = () => {
   if (isLoading) return <>Loading...</>;
   if (isError) return <>Error...</>;
   return (
-    <main className="flex flex-col justify-flex-start items-center h-screen w-screen">
+    <main className="flex flex-col justify-flex-start items-center h-screen w-screen relative">
       <h1 className="font-bold text-3xl my-10">Phone Book Manager</h1>
       <ContactsList data={contacts} />
     </main>

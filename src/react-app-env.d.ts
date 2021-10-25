@@ -6,8 +6,3 @@ interface Contact {
   phone: string;
   description?: string;
 }
-
-interface AddingError {
-  error: boolean;
-  message: string;
-}

@@ -22,6 +22,7 @@ const ContactsList: React.FC<ContactsListProps> = ({ data }) => {
     if (!newFullname) setDisplayData(data);
     setFullname(newFullname);
   };
+  const toggleAddContactModal = () => setAddContact(!addContact);
   return (
     <>
       <section className="box-shadow-2xl sm:w-1/2 w-screen sm:p-0 px-2">
@@ -32,6 +33,7 @@ const ContactsList: React.FC<ContactsListProps> = ({ data }) => {
             value={fullname}
             className="p-2 w-full"
             onChange={handleChangeFullname}
+            maxLength={32}
           />
           <button type="submit" className="bg-black p-2 rounded">
             <svg
@@ -54,12 +56,12 @@ const ContactsList: React.FC<ContactsListProps> = ({ data }) => {
           : "Not Found"}
         <button
           className="bg-black text-white text-lg rounded p-2 text-center w-full"
-          onClick={() => setAddContact(!addContact)}
+          onClick={toggleAddContactModal}
         >
           Add Contact
         </button>
       </section>
-      {addContact && <AddContact />}
+      {addContact && <AddContact toggler={toggleAddContactModal} />}
     </>
   );
 };
