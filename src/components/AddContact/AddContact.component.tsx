@@ -147,6 +147,7 @@ const AddContact: React.FC<AddContactProps> = ({ toggler }) => {
   );
 };
 
+// Added one component to write once and change every input in this component
 const AddContactInput: React.FC<AddContactInputProps> = ({
   value,
   title,

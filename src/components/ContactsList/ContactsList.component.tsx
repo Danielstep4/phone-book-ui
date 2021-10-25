@@ -3,10 +3,11 @@ import AddContact from "../AddContact";
 import Contact from "../Contact";
 
 const ContactsList: React.FC<ContactsListProps> = ({ data }) => {
+  //State
   const [displayData, setDisplayData] = useState<Contact[]>(data);
   const [fullname, setFullname] = useState("");
   const [addContact, setAddContact] = useState(false);
-
+  // Handles search submit
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (fullname) {
@@ -17,11 +18,13 @@ const ContactsList: React.FC<ContactsListProps> = ({ data }) => {
       );
     }
   };
+  // Handles the change of fullname - if fullname is empty string reseting data
   const handleChangeFullname = (e: ChangeEvent<HTMLInputElement>) => {
     const newFullname = e.target.value;
-    if (!newFullname) setDisplayData(data);
+    if (!newFullname.trim()) setDisplayData(data);
     setFullname(newFullname);
   };
+  // Add contact modal toggler
   const toggleAddContactModal = () => setAddContact(!addContact);
   return (
     <>
