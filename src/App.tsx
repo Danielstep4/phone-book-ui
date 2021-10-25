@@ -26,7 +26,6 @@ const App: React.FC = () => {
 
   return (
     <main className="flex flex-col justify-flex-start items-center h-screen w-screen relative">
-      <h1 className="font-bold text-3xl my-10">Phone Book Manager</h1>
       <ContactsList data={contacts} />
     </main>
   );

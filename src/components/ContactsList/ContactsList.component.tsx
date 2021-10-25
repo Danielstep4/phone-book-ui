@@ -40,13 +40,10 @@ const ContactsList: React.FC<ContactsListProps> = ({ data }) => {
   };
   return (
     <>
+      <h1 className="font-bold text-3xl my-10">
+        Phone Book Manager - {displayData.length} Contacts
+      </h1>
       <section className="box-shadow-2xl sm:w-1/2 w-screen sm:p-0 px-2 border">
-        <button
-          className="bg-black text-white text-lg rounded p-2 text-center w-full"
-          onClick={toggleAddContactModal}
-        >
-          Add Contact
-        </button>
         <form className="flex border" onSubmit={handleSubmit}>
           <input
             name="fullname"
@@ -77,6 +74,12 @@ const ContactsList: React.FC<ContactsListProps> = ({ data }) => {
               ))
             : "Not Found"}
         </div>
+        <button
+          className="bg-black text-white text-lg rounded p-2 text-center w-full"
+          onClick={toggleAddContactModal}
+        >
+          Add Contact
+        </button>
       </section>
       {addContact && (
         <AddContact
