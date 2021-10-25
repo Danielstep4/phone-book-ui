@@ -23,10 +23,10 @@ const App: React.FC = () => {
   if (isLoading) return <>Loading...</>;
   if (isError) return <>Error...</>;
   return (
-    <>
-      <AddContact />
+    <main className="flex flex-col justify-flex-start items-center h-screen w-screen">
+      <h1 className="font-bold text-3xl my-10">Phone Book Manager</h1>
       <ContactsList data={contacts} />
-    </>
+    </main>
   );
 };
 
